@@ -16,17 +16,27 @@ namespace Net.Chdk.Providers.Software
 
         public SoftwareHashInfo GetHash(Stream stream, string fileName, string hashName)
         {
+            var value = HashProvider.GetHashString(stream, hashName);
             return new SoftwareHashInfo
             {
                 Name = hashName,
-                Values = GetHashValues(stream, fileName, hashName)
+                Values = GetHashValues(fileName, value)
             };
         }
 
-        private Dictionary<string, string> GetHashValues(Stream stream, string fileName, string hashName)
+        public SoftwareHashInfo GetHash(byte[] buffer, string fileName, string hashName)
+        {
+            var value = HashProvider.GetHashString(buffer, hashName);
+            return new SoftwareHashInfo
+            {
+                Name = hashName,
+                Values = GetHashValues(fileName, value)
+            };
+        }
+
+        private Dictionary<string, string> GetHashValues(string fileName, string value)
         {
             var key = fileName.ToLowerInvariant();
-            var value = HashProvider.GetHashString(stream, hashName);
             return new Dictionary<string, string>
             {
                 { key, value }
