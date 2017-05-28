@@ -15,5 +15,11 @@ namespace Net.Chdk.Providers.Software
             return serviceCollection
                 .AddSingleton<ISoftwareHashProvider, SoftwareHashProvider>();
         }
+
+        public static IServiceCollection AddCameraProvider(this IServiceCollection serviceCollection)
+        {
+            return serviceCollection
+                .AddSingleton<ICameraProvider, CameraProvider>();
+        }
     }
 }

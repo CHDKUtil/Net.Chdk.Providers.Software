@@ -73,6 +73,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CameraProvider.cs" />
+    <Compile Include="IProductCameraProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceCollectionExtensions.cs" />
     <Compile Include="SoftwareHashProvider.cs" />
@@ -82,6 +84,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Net.Chdk.Model.CameraModel\src\Net.Chdk.Model.CameraModel\Net.Chdk.Model.CameraModel.csproj">
+      <Project>{34F5942A-DE8D-4DB2-B7D4-2BB77CDDFF3D}</Project>
+      <Name>Net.Chdk.Model.CameraModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Net.Chdk.Model.Camera\src\Net.Chdk.Model.Camera\Net.Chdk.Model.Camera.csproj">
+      <Project>{66B0906B-FF63-4CFC-8EA7-A472333AECB1}</Project>
+      <Name>Net.Chdk.Model.Camera</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Net.Chdk.Model.Software\src\Net.Chdk.Model.Software\Net.Chdk.Model.Software.csproj">
       <Project>{7F492AD5-C9E5-4E13-9587-D0B88BA8D209}</Project>
       <Name>Net.Chdk.Model.Software</Name>
