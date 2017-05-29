@@ -35,12 +35,6 @@ namespace Net.Chdk.Providers.Software
 
         #endregion
 
-        #region Private Members
-
-        private ILogger Logger { get; }
-
-        #endregion
-
         #region IModulesProvider Members
 
         public string Path => Data.Modules.Path;
