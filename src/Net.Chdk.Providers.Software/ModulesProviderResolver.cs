@@ -1,4 +1,5 @@
-﻿using Net.Chdk.Providers.Product;
+﻿using Microsoft.Extensions.Logging;
+using Net.Chdk.Providers.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,16 @@ namespace Net.Chdk.Providers.Software
         #region Fields
 
         private IProductProvider ProductProvider { get; }
+        private ILoggerFactory LoggerFactory { get; }
 
         #endregion
 
         #region Constructor
 
-        public ModulesProviderResolver(IProductProvider productProvider)
+        public ModulesProviderResolver(IProductProvider productProvider, ILoggerFactory loggerFactory)
         {
             ProductProvider = productProvider;
+            LoggerFactory = loggerFactory;
 
             providers = new Lazy<Dictionary<string, IModulesProvider>>(GetProviders);
         }
@@ -47,9 +50,9 @@ namespace Net.Chdk.Providers.Software
                 .ToDictionary(p => p, CreateModulesProvider);
         }
 
-        private static IModulesProvider CreateModulesProvider(string productName)
+        private IModulesProvider CreateModulesProvider(string productName)
         {
-            return new ModulesProvider(productName);
+            return new ModulesProvider(productName, LoggerFactory);
         }
 
         #endregion

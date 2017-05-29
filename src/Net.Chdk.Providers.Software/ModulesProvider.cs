@@ -1,4 +1,5 @@
-﻿using Net.Chdk.Json;
+﻿using Microsoft.Extensions.Logging;
+using Net.Chdk.Json;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,17 @@ namespace Net.Chdk.Providers.Software
 
         #endregion
 
+        #region Fields
+
+        private ILogger Logger { get; }
+
+        #endregion
+
         #region Constructor
 
-        public ModulesProvider(string productName)
+        public ModulesProvider(string productName, ILoggerFactory loggerFactory)
         {
+            Logger = loggerFactory.CreateLogger<ModulesProvider>();
             ProductName = productName;
 
             data = new Lazy<ComponentsData>(GetData);
