@@ -1,6 +1,7 @@
 ﻿using Net.Chdk.Json;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Net.Chdk.Providers.Software
@@ -32,6 +33,8 @@ namespace Net.Chdk.Providers.Software
 
         public string Extension => Data.Modules.Extension;
 
+        public IDictionary<string, ModuleData> Children => Data.Modules.Children;
+
         #endregion
 
         #region Serializer
@@ -53,6 +56,7 @@ namespace Net.Chdk.Providers.Software
         {
             public string Path { get; set; }
             public string Extension { get; set; }
+            public IDictionary<string, ModuleData> Children { get; set; }
         }
 
         sealed class ComponentsData
