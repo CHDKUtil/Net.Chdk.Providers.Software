@@ -31,6 +31,7 @@ namespace Net.Chdk.Providers.Software
             ProductName = productName;
 
             data = new Lazy<ComponentsData>(GetData);
+            modules = new Lazy<Dictionary<string, ModuleData>>(GetModules);
             moduleNames = new Lazy<Dictionary<string, string>>(GetModuleNames);
         }
 
@@ -49,6 +50,14 @@ namespace Net.Chdk.Providers.Software
             string moduleName;
             ModuleNames.TryGetValue(filePath, out moduleName);
             return moduleName;
+        }
+
+        public string GetModuleTitle(string name)
+        {
+            ModuleData module;
+            if (!Modules.TryGetValue(name, out module))
+                return null;
+            return module.Title;
         }
 
         #endregion
@@ -100,6 +109,36 @@ namespace Net.Chdk.Providers.Software
         {
             Converters = new[] { new HexStringJsonConverter() }
         };
+
+        #endregion
+
+        #region Modules
+
+        private readonly Lazy<Dictionary<string, ModuleData>> modules;
+
+        private Dictionary<string, ModuleData> Modules => modules.Value;
+
+        private Dictionary<string, ModuleData> GetModules()
+        {
+            Dictionary<string, ModuleData> modules = new Dictionary<string, ModuleData>();
+            GetModules(Data.Modules.Children, modules);
+            return modules;
+        }
+
+        private void GetModules(IDictionary<string, ModuleData> children, Dictionary<string, ModuleData> modules)
+        {
+            if (children != null)
+            {
+                foreach (var kvp in children)
+                {
+                    var name = kvp.Key;
+                    var module = kvp.Value;
+                    if (name.Length > 0)
+                        modules.Add(name, module);
+                    GetModules(module.Children, modules);
+                }
+            }
+        }
 
         #endregion
 
