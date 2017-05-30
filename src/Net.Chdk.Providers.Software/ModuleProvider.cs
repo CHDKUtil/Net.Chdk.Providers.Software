@@ -58,6 +58,14 @@ namespace Net.Chdk.Providers.Software
             return module.Title;
         }
 
+        public string GetModuleId(string name)
+        {
+            ModuleData module;
+            if (!Modules.TryGetValue(name, out module))
+                return null;
+            return module.Id;
+        }
+
         #endregion
 
         #region Serializer
