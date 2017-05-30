@@ -43,8 +43,6 @@ namespace Net.Chdk.Providers.Software
 
         public string Extension => Data.Modules.Extension;
 
-        public IDictionary<string, ModuleData> Children => Data.Modules.Children;
-
         public string GetModuleName(string filePath)
         {
             string moduleName;
