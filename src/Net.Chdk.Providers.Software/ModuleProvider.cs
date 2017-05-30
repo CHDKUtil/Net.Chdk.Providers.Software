@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Net.Chdk.Providers.Software
 {
-    sealed class ModulesProvider : IModulesProvider
+    sealed class ModuleProvider : IModuleProvider
     {
         #region Constants
 
@@ -25,9 +25,9 @@ namespace Net.Chdk.Providers.Software
 
         #region Constructor
 
-        public ModulesProvider(string productName, ILoggerFactory loggerFactory)
+        public ModuleProvider(string productName, ILoggerFactory loggerFactory)
         {
-            Logger = loggerFactory.CreateLogger<ModulesProvider>();
+            Logger = loggerFactory.CreateLogger<ModuleProvider>();
             ProductName = productName;
 
             data = new Lazy<ComponentsData>(GetData);
@@ -35,7 +35,7 @@ namespace Net.Chdk.Providers.Software
 
         #endregion
 
-        #region IModulesProvider Members
+        #region IModuleProvider Members
 
         public string Path => Data.Modules.Path;
 

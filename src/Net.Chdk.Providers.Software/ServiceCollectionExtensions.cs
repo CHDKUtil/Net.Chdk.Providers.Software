@@ -28,10 +28,10 @@ namespace Net.Chdk.Providers.Software
                 .AddSingleton<IEncodingProvider, EncodingProvider>();
         }
 
-        public static IServiceCollection AddModulesProviderResolver(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddModuleProviderResolver(this IServiceCollection serviceCollection)
         {
             return serviceCollection
-                .AddSingleton<IModulesProviderResolver, ModulesProviderResolver>();
+                .AddSingleton<IModuleProviderResolver, ModuleProviderResolver>();
         }
     }
 }
