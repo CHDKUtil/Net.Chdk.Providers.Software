@@ -1,36 +1,30 @@
 ﻿using Microsoft.Extensions.Logging;
-using Net.Chdk.Json;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Net.Chdk.Providers.Software
 {
-    sealed class ModuleProvider : IModuleProvider
+    sealed class ModuleProvider : DataProvider<ModuleProvider.ComponentsData>, IModuleProvider
     {
         #region Constants
 
-        private const string DataPath = "Data";
-        private const string ProductPath = "Product";
         private const string DataFileName = "components.json";
 
         #endregion
 
         #region Fields
 
-        private ILogger Logger { get; }
+        private string ProductName { get; }
 
         #endregion
 
         #region Constructor
 
         public ModuleProvider(string productName, ILoggerFactory loggerFactory)
+            : base(loggerFactory.CreateLogger<ModuleProvider>())
         {
-            Logger = loggerFactory.CreateLogger<ModuleProvider>();
             ProductName = productName;
 
-            data = new Lazy<ComponentsData>(GetData);
             modules = new Lazy<Dictionary<string, ModuleData>>(GetModules);
             moduleNames = new Lazy<Dictionary<string, string>>(GetModuleNames);
         }
@@ -68,53 +62,24 @@ namespace Net.Chdk.Providers.Software
 
         #endregion
 
-        #region Serializer
-
-        private static readonly Lazy<JsonSerializer> serializer = new Lazy<JsonSerializer>(GetSerializer);
-
-        private static JsonSerializer Serializer => serializer.Value;
-
-        private static JsonSerializer GetSerializer()
-        {
-            return JsonSerializer.CreateDefault();
-        }
-
-        #endregion
-
         #region Data
 
-        sealed class ModulesData
+        internal sealed class ModulesData
         {
             public string Path { get; set; }
             public string Extension { get; set; }
             public IDictionary<string, ModuleData> Children { get; set; }
         }
 
-        sealed class ComponentsData
+        internal sealed class ComponentsData
         {
             public ModulesData Modules { get; set; }
         }
 
-        private readonly Lazy<ComponentsData> data;
-
-        private ComponentsData Data => data.Value;
-
-        private string ProductName { get; }
-
-        private ComponentsData GetData()
+        protected override string GetFilePath()
         {
-            var filePath = System.IO.Path.Combine(DataPath, ProductPath, ProductName, DataFileName);
-            using (var reader = File.OpenText(filePath))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return Serializer.Deserialize<ComponentsData>(jsonReader);
-            }
+            return System.IO.Path.Combine(Directories.Data, Directories.Product, ProductName, DataFileName);
         }
-
-        private static JsonSerializerSettings Settings => new JsonSerializerSettings
-        {
-            Converters = new[] { new HexStringJsonConverter() }
-        };
 
         #endregion
 

@@ -23,9 +23,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.Chdk.Json", "..\..\..\N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.Chdk.Providers.Product.Core", "..\..\..\Net.Chdk.Providers.Product.Core\src\Net.Chdk.Providers.Product.Core\Net.Chdk.Providers.Product.Core.csproj", "{F04AAE35-D712-4BF8-9F20-5AEF39AAF796}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.Chdk.Providers.Base", "..\..\..\Net.Chdk.Providers.Base\src\Net.Chdk.Providers.Base\Net.Chdk.Providers.Base.csproj", "{3E5DF136-E7C5-4ACA-B065-3E6E36217645}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\..\..\Net.Chdk.Core\src\Net.Chdk.Shared\Net.Chdk.Shared.projitems*{34f5942a-de8d-4db2-b7d4-2bb77cddff3d}*SharedItemsImports = 4
+		..\..\..\Net.Chdk.Core\src\Net.Chdk.Shared\Net.Chdk.Shared.projitems*{3e5df136-e7c5-4aca-b065-3e6e36217645}*SharedItemsImports = 4
 		..\..\..\Net.Chdk.Core\src\Net.Chdk.Shared\Net.Chdk.Shared.projitems*{568296bc-d638-4892-b51e-f90deab0c140}*SharedItemsImports = 4
 		..\..\..\Net.Chdk.Core\src\Net.Chdk.Shared\Net.Chdk.Shared.projitems*{5a6b4079-63ef-42bc-baf8-f6c3480a4ec6}*SharedItemsImports = 4
 		..\..\..\Net.Chdk.Core\src\Net.Chdk.Shared\Net.Chdk.Shared.projitems*{66b0906b-ff63-4cfc-8ea7-a472333aecb1}*SharedItemsImports = 4
@@ -115,6 +118,14 @@ Global
 		{F04AAE35-D712-4BF8-9F20-5AEF39AAF796}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F04AAE35-D712-4BF8-9F20-5AEF39AAF796}.Release|x64.ActiveCfg = Release|Any CPU
 		{F04AAE35-D712-4BF8-9F20-5AEF39AAF796}.Release|x64.Build.0 = Release|Any CPU
+		{3E5DF136-E7C5-4ACA-B065-3E6E36217645}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E5DF136-E7C5-4ACA-B065-3E6E36217645}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E5DF136-E7C5-4ACA-B065-3E6E36217645}.Debug|x64.ActiveCfg = Debug|x64
+		{3E5DF136-E7C5-4ACA-B065-3E6E36217645}.Debug|x64.Build.0 = Debug|x64
+		{3E5DF136-E7C5-4ACA-B065-3E6E36217645}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E5DF136-E7C5-4ACA-B065-3E6E36217645}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E5DF136-E7C5-4ACA-B065-3E6E36217645}.Release|x64.ActiveCfg = Release|x64
+		{3E5DF136-E7C5-4ACA-B065-3E6E36217645}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
