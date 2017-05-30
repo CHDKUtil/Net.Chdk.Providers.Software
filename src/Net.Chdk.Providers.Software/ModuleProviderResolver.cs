@@ -1,28 +1,23 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Providers.Product;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Net.Chdk.Providers.Software
 {
-    sealed class ModuleProviderResolver : IModuleProviderResolver
+    sealed class ModuleProviderResolver : ProviderResolver<IModuleProvider>, IModuleProviderResolver
     {
         #region Fields
 
         private IProductProvider ProductProvider { get; }
-        private ILoggerFactory LoggerFactory { get; }
 
         #endregion
 
         #region Constructor
 
         public ModuleProviderResolver(IProductProvider productProvider, ILoggerFactory loggerFactory)
+            : base(loggerFactory)
         {
             ProductProvider = productProvider;
-            LoggerFactory = loggerFactory;
-
-            providers = new Lazy<Dictionary<string, IModuleProvider>>(GetProviders);
         }
 
         #endregion
@@ -31,26 +26,19 @@ namespace Net.Chdk.Providers.Software
 
         public IModuleProvider GetModuleProvider(string productName)
         {
-            IModuleProvider moduleProvider;
-            Providers.TryGetValue(productName, out moduleProvider);
-            return moduleProvider;
+            return GetProvider(productName);
         }
 
         #endregion
 
         #region Providers
 
-        private readonly Lazy<Dictionary<string, IModuleProvider>> providers;
-
-        private Dictionary<string, IModuleProvider> Providers => providers.Value;
-
-        private Dictionary<string, IModuleProvider> GetProviders()
+        protected override IEnumerable<string> GetNames()
         {
-            return ProductProvider.GetProducts()
-                .ToDictionary(p => p, CreateModuleProvider);
+            return ProductProvider.GetProducts();
         }
 
-        private IModuleProvider CreateModuleProvider(string productName)
+        protected override IModuleProvider CreateProvider(string productName)
         {
             return new ModuleProvider(productName, LoggerFactory);
         }
