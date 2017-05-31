@@ -33,9 +33,9 @@ namespace Net.Chdk.Providers.Software
 
         #region IModuleProvider Members
 
-        public string Path => Data.Modules.Path;
+        public string Path => Data.Modules?.Path;
 
-        public string Extension => Data.Modules.Extension;
+        public string Extension => Data.Modules?.Extension;
 
         public string GetModuleName(string filePath)
         {
@@ -100,7 +100,7 @@ namespace Net.Chdk.Providers.Software
         private Dictionary<string, ModuleData> GetModules()
         {
             Dictionary<string, ModuleData> modules = new Dictionary<string, ModuleData>();
-            GetModules(Data.Modules.Children, modules);
+            GetModules(Data.Modules?.Children, modules);
             return modules;
         }
 
@@ -130,7 +130,7 @@ namespace Net.Chdk.Providers.Software
         private Dictionary<string, string> GetModuleNames()
         {
             var moduleNames = new Dictionary<string, string>();
-            GetModuleNames(Data.Modules.Children, moduleNames);
+            GetModuleNames(Data.Modules?.Children, moduleNames);
             return moduleNames;
         }
 
