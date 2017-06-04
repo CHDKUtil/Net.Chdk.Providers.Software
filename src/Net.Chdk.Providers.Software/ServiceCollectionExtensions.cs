@@ -28,6 +28,12 @@ namespace Net.Chdk.Providers.Software
                 .AddSingleton<IEncodingProvider, EncodingProvider>();
         }
 
+        public static IServiceCollection AddFileSystemProvider(this IServiceCollection serviceCollection)
+        {
+            return serviceCollection
+                .AddSingleton<IFileSystemProvider, FileSystemProvider>();
+        }
+
         public static IServiceCollection AddModuleProviderResolver(this IServiceCollection serviceCollection)
         {
             return serviceCollection
