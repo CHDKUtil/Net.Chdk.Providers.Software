@@ -35,7 +35,7 @@ namespace Net.Chdk.Providers.Software
 
         protected override IEnumerable<string> GetNames()
         {
-            return ProductProvider.GetProducts();
+            return ProductProvider.GetProductNames();
         }
 
         protected override IModuleProvider CreateProvider(string productName)
