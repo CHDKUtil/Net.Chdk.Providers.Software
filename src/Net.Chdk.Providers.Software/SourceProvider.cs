@@ -1,4 +1,5 @@
-﻿using Net.Chdk.Model.Software;
+﻿using Net.Chdk.Model.Category;
+using Net.Chdk.Model.Software;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,7 +14,7 @@ namespace Net.Chdk.Providers.Software
             ProductSourceProviders = productSourceProviders;
         }
 
-        public IEnumerable<KeyValuePair<string, SoftwareSourceInfo>> GetSources(SoftwareCategoryInfo category)
+        public IEnumerable<KeyValuePair<string, SoftwareSourceInfo>> GetSources(CategoryInfo category)
         {
             return ProductSourceProviders
                 .SelectMany(p => p.GetSources(category));
