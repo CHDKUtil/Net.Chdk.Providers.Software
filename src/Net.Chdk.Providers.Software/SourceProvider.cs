@@ -1,5 +1,6 @@
 ﻿using Net.Chdk.Model.Category;
 using Net.Chdk.Model.Software;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,16 +15,30 @@ namespace Net.Chdk.Providers.Software
             ProductSourceProviders = productSourceProviders;
         }
 
-        public IEnumerable<KeyValuePair<string, SoftwareSourceInfo>> GetSources(CategoryInfo category)
+        public IEnumerable<Tuple<string, string, SoftwareSourceInfo>> GetSources(CategoryInfo category)
         {
             return ProductSourceProviders
-                .SelectMany(p => p.GetSources(category));
+                .SelectMany(p => GetSources(p, category));
         }
 
-        public IEnumerable<KeyValuePair<string, SoftwareSourceInfo>> GetSources(SoftwareProductInfo product)
+        public IEnumerable<Tuple<string, string, SoftwareSourceInfo>> GetSources(SoftwareProductInfo product)
         {
             return ProductSourceProviders
-                .SelectMany(p => p.GetSources(product));
+                .SelectMany(p => GetSources(p, product));
+        }
+
+        private static IEnumerable<Tuple<string, string, SoftwareSourceInfo>> GetSources(IProductSourceProvider provider, CategoryInfo category)
+        {
+            return provider
+                .GetSources(category)
+                .Select(kvp => Tuple.Create(provider.ProductName, kvp.Key, kvp.Value));
+        }
+
+        private static IEnumerable<Tuple<string, string, SoftwareSourceInfo>> GetSources(IProductSourceProvider provider, SoftwareProductInfo product)
+        {
+            return provider
+                .GetSources(product)
+                .Select(kvp => Tuple.Create(provider.ProductName, kvp.Key, kvp.Value));
         }
 
         public IEnumerable<SoftwareSourceInfo> GetSources(SoftwareProductInfo product, string sourceName)

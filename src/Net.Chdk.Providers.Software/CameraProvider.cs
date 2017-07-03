@@ -15,10 +15,10 @@ namespace Net.Chdk.Providers.Software
             CameraProviders = cameraProviders;
         }
 
-        public SoftwareCameraInfo GetCamera(SoftwareProductInfo productInfo, CameraInfo cameraInfo, CameraModelInfo cameraModelInfo)
+        public SoftwareCameraInfo GetCamera(string productName, CameraInfo cameraInfo, CameraModelInfo cameraModelInfo)
         {
             return CameraProviders
-                .Select(p => p.GetCamera(productInfo, cameraInfo, cameraModelInfo))
+                .Select(p => p.GetCamera(productName, cameraInfo, cameraModelInfo))
                 .FirstOrDefault(c => c != null);
         }
 
