@@ -77,7 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraProvider.cs" />
-    <Compile Include="IProductCameraProvider.cs" />
     <Compile Include="ModuleProvider.cs" />
     <Compile Include="ModuleProviderResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
