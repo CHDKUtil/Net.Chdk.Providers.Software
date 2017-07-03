@@ -7,5 +7,6 @@ namespace Net.Chdk.Providers.Software
     public interface IProductCameraProvider
     {
         SoftwareCameraInfo GetCamera(SoftwareProductInfo productInfo, CameraInfo cameraInfo, CameraModelInfo cameraModelInfo);
+        SoftwareEncodingInfo GetEncoding(SoftwareProductInfo productInfo, SoftwareCameraInfo cameraInfo);
     }
 }

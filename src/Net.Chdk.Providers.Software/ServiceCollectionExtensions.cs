@@ -22,12 +22,6 @@ namespace Net.Chdk.Providers.Software
                 .AddSingleton<ICameraProvider, CameraProvider>();
         }
 
-        public static IServiceCollection AddEncodingProvider(this IServiceCollection serviceCollection)
-        {
-            return serviceCollection
-                .AddSingleton<IEncodingProvider, EncodingProvider>();
-        }
-
         public static IServiceCollection AddModuleProviderResolver(this IServiceCollection serviceCollection)
         {
             return serviceCollection

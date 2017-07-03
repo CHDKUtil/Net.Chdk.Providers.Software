@@ -21,5 +21,12 @@ namespace Net.Chdk.Providers.Software
                 .Select(p => p.GetCamera(productInfo, cameraInfo, cameraModelInfo))
                 .FirstOrDefault(c => c != null);
         }
+
+        public SoftwareEncodingInfo GetEncoding(SoftwareProductInfo productInfo, SoftwareCameraInfo cameraInfo)
+        {
+            return CameraProviders
+                .Select(p => p.GetEncoding(productInfo, cameraInfo))
+                .FirstOrDefault(c => c != null);
+        }
     }
 }
