@@ -78,8 +78,6 @@
   <ItemGroup>
     <Compile Include="CameraProvider.cs" />
     <Compile Include="EncodingProvider.cs" />
-    <Compile Include="FileSystemProvider.cs" />
-    <Compile Include="IProductFileSystemProvider.cs" />
     <Compile Include="IProductCameraProvider.cs" />
     <Compile Include="IProductEncodingProvider.cs" />
     <Compile Include="ModuleProvider.cs" />
