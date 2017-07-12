@@ -39,23 +39,20 @@ namespace Net.Chdk.Providers.Software
 
         public string GetModuleName(string filePath)
         {
-            string moduleName;
-            ModuleNames.TryGetValue(filePath, out moduleName);
+            ModuleNames.TryGetValue(filePath, out string moduleName);
             return moduleName;
         }
 
         public string GetModuleTitle(string name)
         {
-            ModuleData module;
-            if (!Modules.TryGetValue(name, out module))
+            if (!Modules.TryGetValue(name, out ModuleData module))
                 return null;
             return module.Title;
         }
 
         public string GetModuleId(string name)
         {
-            ModuleData module;
-            if (!Modules.TryGetValue(name, out module))
+            if (!Modules.TryGetValue(name, out ModuleData module))
                 return null;
             return module.Id;
         }
