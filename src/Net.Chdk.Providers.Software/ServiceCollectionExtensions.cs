@@ -22,10 +22,10 @@ namespace Net.Chdk.Providers.Software
                 .AddSingleton<ICameraProvider, CameraProvider>();
         }
 
-        public static IServiceCollection AddModuleProviderResolver(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddModuleProvider(this IServiceCollection serviceCollection)
         {
             return serviceCollection
-                .AddSingleton<IModuleProviderResolver, ModuleProviderResolver>();
+                .AddSingleton<IModuleProvider, ModuleProvider>();
         }
     }
 }
