@@ -37,11 +37,21 @@
 
   <ItemGroup>
     <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
-    <PackageReference Include="Net.Chdk.Core" Version="0.2.0-alpha" />
-    <PackageReference Include="Net.Chdk.Json" Version="0.1.0-alpha" />
-    <PackageReference Include="Net.Chdk.Providers.Base" Version="0.1.0-alpha" />
-    <PackageReference Include="Net.Chdk.Providers.Crypto.Core" Version="0.1.0-alpha" />
-    <PackageReference Include="Net.Chdk.Providers.Product.Core" Version="0.1.0-alpha" />
+    <PackageReference Include="Net.Chdk.Core" Version="0.2.0-alpha">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Net.Chdk.Json" Version="0.1.0-alpha">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Net.Chdk.Providers.Base" Version="0.1.0-alpha">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Net.Chdk.Providers.Crypto.Core" Version="0.1.0-alpha">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Net.Chdk.Providers.Product.Core" Version="0.1.0-alpha">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Net.Chdk.Providers.Software.Core" Version="0.3.0-alpha" />
   </ItemGroup>
 
