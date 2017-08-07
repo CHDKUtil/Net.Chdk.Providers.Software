@@ -1,7 +1,6 @@
 ﻿using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Crypto;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Net.Chdk.Providers.Software
 {
@@ -12,16 +11,6 @@ namespace Net.Chdk.Providers.Software
         public SoftwareHashProvider(IHashProvider hashProvider)
         {
             HashProvider = hashProvider;
-        }
-
-        public SoftwareHashInfo GetHash(Stream stream, string fileName, string hashName)
-        {
-            var value = HashProvider.GetHashString(stream, hashName);
-            return new SoftwareHashInfo
-            {
-                Name = hashName,
-                Values = GetHashValues(fileName, value)
-            };
         }
 
         public SoftwareHashInfo GetHash(byte[] buffer, string fileName, string hashName)
